@@ -3,7 +3,7 @@ import { MarketingConfig } from "@/types";
 export const marketingConfig: MarketingConfig = {
   mainNav: [
     {
-      title: "禁煙する",
+      title: "サービスの特徴",
       href: "#features",
     },
     {
