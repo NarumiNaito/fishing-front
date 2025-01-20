@@ -12,6 +12,7 @@ export type SiteConfig = {
   links: {
     github: string;
     confess: string;
+    x: string;
   };
 };
 
