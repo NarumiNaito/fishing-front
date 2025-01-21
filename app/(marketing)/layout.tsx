@@ -1,4 +1,5 @@
 import MainNav from "@/components/MainNav";
+import SiteFooter from "@/components/SiteFooter";
 import { marketingConfig } from "@/config/marketing";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -17,6 +18,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         </div>
       </header>
       <main>{children}</main>
+      <SiteFooter />
     </div>
   );
 }
