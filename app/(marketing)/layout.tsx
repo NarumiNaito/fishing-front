@@ -1,3 +1,4 @@
+import { Earth } from "@/components/earth/Earth";
 import MainNav from "@/components/MainNav";
 import SiteFooter from "@/components/SiteFooter";
 import { marketingConfig } from "@/config/marketing";
@@ -17,6 +18,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </nav>
         </div>
       </header>
+      <Earth />
       <main>{children}</main>
       <SiteFooter />
     </div>

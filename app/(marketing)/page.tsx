@@ -1,3 +1,4 @@
+import { Earth } from "@/components/earth/Earth";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ export default function IndexPage() {
           </div>
         </div>
       </section>
+
       <section id="features" className="bg-teal-100 py-8 md:py-12 lg:py-24 ">
         <div className="text-center space-y-6">
           <h2 className="font-extrabold text-3xl md:text-6xl ">サービスの特徴</h2>
