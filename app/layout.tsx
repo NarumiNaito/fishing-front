@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-teal-200 min-h-screen w-full", fontNotSansJP.className)}>{children}</body>
+      <body className={cn("bg-cyan-200 min-h-screen w-full", fontNotSansJP.className)}>{children}</body>
     </html>
   );
 }

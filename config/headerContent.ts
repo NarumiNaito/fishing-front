@@ -1,6 +1,6 @@
-import { MarketingConfig } from "@/types";
+import { HeaderContentConfig } from "@/types";
 
-export const marketingConfig: MarketingConfig = {
+export const headerContent: HeaderContentConfig = {
   mainNav: [
     {
       title: "サービスの特徴",

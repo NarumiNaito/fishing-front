@@ -15,7 +15,7 @@ export default function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center md:gap-10">
       <Link href={"/"} className="hidden md-flex items-center space-X-2">
-        <span className="hidden font-bold sm:inline-block ">Post Writer</span>
+        <span className="hidden font-bold sm:inline-block ">Angler Map</span>
       </Link>
       <nav className="hidden md:flex gap-6 ">
         {items?.map((item, index) => (
