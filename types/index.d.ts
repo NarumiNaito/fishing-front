@@ -19,3 +19,8 @@ export type SiteConfig = {
 export type HeaderContentConfig = {
   mainNav: NavItem[];
 };
+
+export type Login = {
+  mail: string;
+  password: string;
+};
