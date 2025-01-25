@@ -1,4 +1,4 @@
-export default function SiteFooter() {
+export default function Footer() {
   return (
     <footer className="mx-auto py-10 bg-teal-500">
       <div className="text-center">
