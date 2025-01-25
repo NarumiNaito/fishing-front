@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldValues, UseControllerProps } from "react-hook-form";
+import { FieldValues, UseControllerProps, ControllerRenderProps } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input, InputProps } from "@/components/ui/input";
 
@@ -8,12 +8,12 @@ export type FormInputProps<T extends FieldValues> = InputProps &
     label: string;
   };
 
-export function FormInput<S extends FieldValues>({ name, control, label, ...inputProps }: FormInputProps<S>) {
+export function LoginFormInput<S extends FieldValues>({ name, control, label, ...inputProps }: FormInputProps<S>) {
   return (
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({ field }: { field: ControllerRenderProps<S> }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
