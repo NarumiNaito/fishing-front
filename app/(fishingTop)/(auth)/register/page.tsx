@@ -7,6 +7,7 @@ import { z } from "zod";
 import { LoginFormInput } from "@/features/LoginFormInput";
 import Link from "next/link";
 import { Login } from "@/types";
+import { RegisterFormInput } from "@/features/Refisterform";
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -38,17 +39,20 @@ export default function FormPage() {
   });
 
   return (
-    <Form {...form}>
-      <form onSubmit={onSubmit} className="grid grid-cols-1 gap-4 max-w-sm mx-auto mt-6">
-        <LoginFormInput control={form.control} name="email" label="メールアドレス" placeholder="メールアドレスを入力してください" />
-        <LoginFormInput control={form.control} name="password" label="パスワード" placeholder="パスワードを入力してください" />
-        <Button type="submit">送信</Button>
-      </form>
-      <p className="text-muted-foreground px-8 text-center text-sm">
-        <Link href={"/register"} className="underline underline-offset-4">
-          アカウントを持っていませんか？
-        </Link>
-      </p>
-    </Form>
+    <>
+      {/* <Form {...form}>
+        <form onSubmit={onSubmit} className="grid grid-cols-1 gap-4 max-w-sm mx-auto mt-6">
+          <LoginFormInput control={form.control} name="email" label="メールアドレス" placeholder="メールアドレスを入力してください" />
+          <LoginFormInput control={form.control} name="password" label="パスワード" placeholder="パスワードを入力してください" />
+          <Button type="submit">送信</Button>
+        </form>
+        <p className="text-muted-foreground px-8 text-center text-sm">
+          <Link href={"/register"} className="underline underline-offset-4">
+            アカウントを持っていませんか？
+          </Link>
+        </p>
+      </Form> */}
+      <RegisterFormInput />
+    </>
   );
 }
