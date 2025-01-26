@@ -16,7 +16,7 @@ export default function MobileNav({ items }: MobileNavProps) {
         <Link href={"/"} className="font-bold">
           {siteConfig.name}
         </Link>
-        <nav className="text-sm flex gap-4">
+        <nav className="text-sm flex gap-5">
           {items?.map((item, index) => (
             <Link key={index} href={item.href}>
               {item.title}
