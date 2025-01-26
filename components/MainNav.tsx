@@ -13,11 +13,11 @@ export default function MainNav({ items }: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
-    <div className="flex items-center gap-10">
+    <div className="flex items-center gap-5">
       <Link href={"/"} className="">
         <span className="font-bold">Anglers Map</span>
       </Link>
-      <nav className="hidden md:flex gap-6">
+      <nav className="hidden md:flex gap-5">
         {items?.map((item, index) => (
           <Link key={index} href={item.href} className="text-lg sm:text-sm hover:text-foreground/80">
             {item.title}

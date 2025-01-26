@@ -8,7 +8,7 @@ export type FormInputProps<T extends FieldValues> = InputProps &
     label: string;
   };
 
-export function LoginFormInput<S extends FieldValues>({ name, control, label, ...inputProps }: FormInputProps<S>) {
+export function FormInput<S extends FieldValues>({ name, control, label, ...inputProps }: FormInputProps<S>) {
   return (
     <FormField
       control={control}
