@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: ./.docker/Dockerfile
-    container_name: smoking
+    container_name: fishing
     ports:
       - 3000:3000
     volumes:
