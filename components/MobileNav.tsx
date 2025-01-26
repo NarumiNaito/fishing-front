@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/siteConfig";
 import { NavItem } from "@/types";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/siteConfig";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -11,14 +11,14 @@ export default function IndexPage() {
           <h1 className="font-extrabold text-3xl sm:text-6xl md:text-6xl lg:text-7xl">Angler Map</h1>
           <p className="text-muted-foreground sm:text-xl leading-normal max-w-[42rem]">アングラーのための釣り情報総合サイトです</p>
           <div className="space-x-4">
-            <Link href={"/login"} className={cn(buttonVariants({ size: "lg" }))}>
+            <Link href={"/register"} className={cn(buttonVariants({ size: "lg" }))}>
               始める
             </Link>
           </div>
         </div>
       </section>
 
-      <section id="features" className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
+      <section className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
         <div className="text-center space-y-6">
           <h2 className="font-extrabold text-3xl md:text-6xl ">サービスの特徴</h2>
           <p className="text-muted-foreground sm:text-lg sm:leading-7">下記参照</p>
