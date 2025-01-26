@@ -3,17 +3,21 @@ import { HeaderContentConfig } from "@/types";
 export const mainContent: HeaderContentConfig = {
   mainNav: [
     {
-      title: "サービスの特徴",
-      href: "#features",
+      title: "ホーム",
+      href: "/",
     },
     {
-      title: "ステータス",
-      href: "/blog",
+      title: "釣果情報",
+      href: "/results",
     },
     {
-      title: "仲間",
-      href: "/pricing",
+      title: "タックルランキング",
+      href: "/gear",
     },
+    // {
+    //   title: "マップ",
+    //   href: "/map",
+    // },
   ],
 };
 

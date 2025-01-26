@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/siteConfig";
+import StoreProvider from "@/reducks/StoreProvider";
 
 const fontNotSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-secondary", fontNotSansJP.className)}>{children}</body>
+      <body className={cn("bg-secondary", fontNotSansJP.className)}>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }
