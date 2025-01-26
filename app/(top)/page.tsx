@@ -1,23 +1,11 @@
-import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/siteConfig";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import MainVideo from "@/components/MainVideo";
 
 export default function IndexPage() {
   return (
     <>
-      <section className="pt-10 md:pt-24 lg:py-36 pb-8 md:pb-24">
-        <div className="text-center flex flex-col items-center gap-4 ">
-          <h1 className="font-extrabold text-3xl sm:text-6xl md:text-6xl lg:text-7xl">Angler Map</h1>
-          <p className="text-muted-foreground sm:text-xl leading-normal max-w-[42rem]">アングラーのための釣り情報総合サイトです</p>
-          <div className="space-x-4">
-            <Link href={"/register"} className={cn(buttonVariants({ size: "lg" }))}>
-              始める
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      <MainVideo />
       <section className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
         <div className="text-center space-y-6">
           <h2 className="font-extrabold text-3xl md:text-6xl ">サービスの特徴</h2>
