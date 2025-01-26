@@ -11,10 +11,8 @@ export const store = configureStore({
   },
 });
 
-// 型定義
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
-// カスタムフック
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

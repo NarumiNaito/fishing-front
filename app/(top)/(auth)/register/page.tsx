@@ -10,6 +10,9 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from "@/component
 
 const FormSchema = z
   .object({
+    name: z.string().min(2, {
+      message: "ユーザーネームは2文字以上で入力してください",
+    }),
     email: z.string().email({
       message: "メールアドレスの形式が正しくありません",
     }),
@@ -21,9 +24,14 @@ const FormSchema = z
       .regex(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/, {
         message: "パスワードは数字・英小文字・英大文字をそれぞれ1文字以上使用してください",
       }),
-    confirmPassword: z.string().min(8, {
-      message: "パスワードは8文字以上で入力してください",
-    }),
+    confirmPassword: z
+      .string()
+      .min(8, {
+        message: "パスワードは8文字以上で入力してください",
+      })
+      .regex(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/, {
+        message: "パスワードは数字・英小文字・英大文字をそれぞれ1文字以上使用してください",
+      }),
   })
   .superRefine(({ password, confirmPassword }, ctx) => {
     if (password !== confirmPassword) {
@@ -40,8 +48,10 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 export default function RegisterFormPage() {
   const form = useForm<FormSchemaType>({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
     resolver: zodResolver(FormSchema),
   });
@@ -61,6 +71,9 @@ export default function RegisterFormPage() {
           <form onSubmit={onSubmit}>
             <div className="grid gap-6">
               <div className="grid gap-6">
+                <div className="grid gap-2">
+                  <FormInput control={form.control} name="name" label="ユーザーネーム" placeholder="ユーザーネームを入力してください" />
+                </div>
                 <div className="grid gap-2">
                   <FormInput control={form.control} name="email" label="メールアドレス" placeholder="メールアドレスを入力してください" />
                 </div>
