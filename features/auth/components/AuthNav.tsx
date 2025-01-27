@@ -1,4 +1,4 @@
-import { NavItem } from "@/types";
+import { NavItem } from "@/features/auth/hooks";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -9,7 +9,7 @@ interface MainNavProps {
 
 export default function AuthNav({ items }: MainNavProps) {
   return (
-    <div className="flex items-center gap-10">
+    <div className="flex items-center gap-5">
       <nav className="flex gap-5">
         {items?.map((item, index) => (
           <Link key={index} href={item.href} className="sm:text-sm hover:text-foreground/80">

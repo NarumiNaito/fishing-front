@@ -1,4 +1,4 @@
-import { HeaderContentConfig } from "@/types";
+import { HeaderContentConfig } from "@/features/auth/hooks";
 
 export const mainContent: HeaderContentConfig = {
   mainNav: [

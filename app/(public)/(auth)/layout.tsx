@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/siteConfig";
+import { siteConfig } from "@/const/siteConfig";
 import { GalleryVerticalEnd } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";

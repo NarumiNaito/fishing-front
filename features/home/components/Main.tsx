@@ -1,11 +1,10 @@
-import { siteConfig } from "@/config/siteConfig";
+import { siteConfig } from "@/const/siteConfig";
 import Link from "next/link";
-import MainVideo from "@/components/MainVideo";
+import MainVideo from "@/components/elements/MainVideo";
 
-export default function IndexPage() {
+export default function Main() {
   return (
     <>
-      <MainVideo />
       <section className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
         <div className="text-center space-y-6">
           <h2 className="font-extrabold text-3xl md:text-6xl ">サービスの特徴</h2>

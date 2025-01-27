@@ -1,9 +1,3 @@
-export type NavItem = {
-  title: string;
-  href: string;
-  disabled?: boolean;
-};
-
 export type SiteConfig = {
   name: string;
   description: string;
@@ -14,8 +8,4 @@ export type SiteConfig = {
     confess: string;
     x: string;
   };
-};
-
-export type HeaderContentConfig = {
-  mainNav: NavItem[];
 };
