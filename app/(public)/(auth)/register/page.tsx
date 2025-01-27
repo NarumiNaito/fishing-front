@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { FormInput } from "@/features/FormInput";
+import { FormInput } from "@/components/elements/FormInput";
 import Link from "next/link";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 

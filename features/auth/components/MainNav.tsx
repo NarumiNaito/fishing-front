@@ -1,5 +1,5 @@
 "use client";
-import { NavItem } from "@/types";
+import { NavItem } from "@/features/auth/hooks";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import MobileNav from "./MobileNav";
