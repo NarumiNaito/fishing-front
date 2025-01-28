@@ -1,7 +1,7 @@
-import MainNav from "@/features/auth/components/MainNav";
-import { mainContent } from "@/features/auth/const/headerContent";
-import { authContent } from "@/features/auth/const/headerContent";
-import AuthNav from "@/features/auth/components/AuthNav";
+import MainNav from "@/components/layouts/Header/navigation/MainNav";
+import { mainContent } from "@/const/headerContent";
+import { authContent } from "@/const/headerContent";
+import AuthNav from "@/components/layouts/Header/navigation/AuthNav";
 
 export default function Header() {
   return (
