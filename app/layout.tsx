@@ -3,7 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/const/siteConfig";
-import StoreProvider from "@/reducks/StoreProvider";
+import StoreProvider from "@/reducks/store/StoreProvider";
 
 const fontNotSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
