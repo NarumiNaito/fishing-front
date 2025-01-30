@@ -82,11 +82,6 @@ export default function RegisterFormPage({ className, ...props }: React.Componen
                   <div className="grid gap-2">
                     <FormInput control={form.control} name="confirmPassword" label="パスワードを再入力" placeholder="確認のためパスワードを再入力して下さい" />
                   </div>
-                  <div className="flex items-center">
-                    <a href="#" className="ml-auto text-sm underline-offset-2 hover:underline">
-                      パスワードをお忘れの方はこちら
-                    </a>
-                  </div>
                   <Button type="submit" className="w-full">
                     ログイン
                   </Button>

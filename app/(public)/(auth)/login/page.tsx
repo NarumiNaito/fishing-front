@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import SubVideo from "@/components/elements/SubVideo";
+import { axios } from "@/components/api/Axios";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -26,6 +28,7 @@ const FormSchema = z.object({
 type FormSchemaType = z.infer<typeof FormSchema>;
 
 export default function LoginFormPage({ className, ...props }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const form = useForm<FormSchemaType>({
     defaultValues: {
       email: "",
@@ -34,8 +37,21 @@ export default function LoginFormPage({ className, ...props }: React.ComponentPr
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmit = form.handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = form.handleSubmit(async (data) => {
+    const requestUser = {
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      await axios.get("sanctum/csrf-cookie").then((res) => {
+        axios.post(`localhost/api/v1/login`, requestUser).then((res) => {
+          router.push("/");
+        });
+      });
+    } catch (error) {
+      console.error("予期しないエラー:", error);
+    }
   });
 
   return (
