@@ -1,9 +1,3 @@
-import { siteConfig } from "@/const/siteConfig";
-import { GalleryVerticalEnd } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
