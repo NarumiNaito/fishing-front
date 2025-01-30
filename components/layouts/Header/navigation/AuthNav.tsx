@@ -1,4 +1,4 @@
-import { NavItem } from "@/features/auth/hooks";
+import { NavItem } from "@/types";
 import Link from "next/link";
 import { ReactNode } from "react";
 

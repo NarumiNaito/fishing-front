@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 export const axios = Axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     "Content-Type": "application/json",
     "X-Requested-With": "XMLHttpRequest",

@@ -1,6 +1,5 @@
 import { siteConfig } from "@/const/siteConfig";
 import Link from "next/link";
-import MainVideo from "@/components/elements/MainVideo";
 
 export default function Main() {
   return (

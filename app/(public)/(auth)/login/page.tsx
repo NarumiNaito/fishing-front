@@ -44,8 +44,8 @@ export default function LoginFormPage({ className, ...props }: React.ComponentPr
     };
 
     try {
-      await axios.get("sanctum/csrf-cookie").then((res) => {
-        axios.post(`localhost/api/v1/login`, requestUser).then((res) => {
+      await axios.get(`sanctum/csrf-cookie`).then(() => {
+        axios.post(`localhost/api/v1/login`, requestUser).then(() => {
           router.push("/");
         });
       });
