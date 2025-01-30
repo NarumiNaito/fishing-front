@@ -1,5 +1,5 @@
 import { siteConfig } from "@/const/siteConfig";
-import { NavItem } from "@/features/auth/hooks";
+import { NavItem } from "@/types";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link";
 import { ReactNode } from "react";
