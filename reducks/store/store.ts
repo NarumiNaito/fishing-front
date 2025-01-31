@@ -1,13 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-// 例: slice のインポート
-// import counterReducer from "./features/counterSlice";
+import reducer from "../users/reducers";
 
-// ストアを作成
 export const store = configureStore({
   reducer: {
-    // ここに他のスライスを追加
-    // counter: counterReducer,
+    users: reducer,
   },
 });
 

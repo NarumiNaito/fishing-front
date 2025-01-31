@@ -3,6 +3,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { axios } from "@/components/api/Axios";
+import { getUser } from "@/reducks/users/actions";
+import { updateUser } from "@/reducks/users/reducers";
+import { UserType } from "@/types";
+import { useAppDispatch } from "@/reducks/store/store";
 
 const FormSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -18,6 +22,7 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 
 export function useLoginForm() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const form = useForm<FormSchemaType>({
     defaultValues: { email: "", password: "" },
@@ -30,7 +35,14 @@ export function useLoginForm() {
     try {
       await axios.get("sanctum/csrf-cookie");
       await axios.post("api/v1/login", requestUser);
-      router.push("/");
+
+      const userData: UserType | null = await getUser();
+      if (userData) {
+        dispatch(updateUser(userData));
+      } else {
+        console.error("ユーザー情報が取得できませんでした");
+      }
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
