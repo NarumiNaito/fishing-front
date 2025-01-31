@@ -29,10 +29,10 @@ export function useLoginForm() {
 
     try {
       await axios.get("sanctum/csrf-cookie");
-      await axios.post("localhost/api/v1/login", requestUser);
+      await axios.post("api/v1/login", requestUser);
       router.push("/");
     } catch (error) {
-      console.error("予期しないエラー:", error);
+      console.error(error);
     }
   });
 
