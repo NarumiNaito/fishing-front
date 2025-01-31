@@ -19,3 +19,12 @@ export type NavItem = {
 export type HeaderContentConfig = {
   mainNav: NavItem[];
 };
+
+export type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  status: string;
+  isLogin: boolean;
+};
