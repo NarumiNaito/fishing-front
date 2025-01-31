@@ -59,7 +59,7 @@ export function useRegisterForm() {
 
     try {
       await axios.get("sanctum/csrf-cookie");
-      await axios.post("localhost/api/v1/register", requestUser);
+      await axios.post("api/v1/register", requestUser);
       router.push("/"); // 登録完了後、トップページに遷移
     } catch (error) {
       console.error("予期しないエラー:", error);
