@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-const usersSelector = (state: any) => state.users;
+const usersSelector = (state: any) => state.user;
 
 export const getLogin = createSelector([usersSelector], (state) => state.isLogin);
 

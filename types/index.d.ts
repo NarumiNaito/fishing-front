@@ -28,3 +28,7 @@ export type UserType = {
   status: string;
   isLogin: boolean;
 };
+
+export interface UserState {
+  user: UserType | null;
+}

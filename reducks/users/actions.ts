@@ -1,10 +1,15 @@
+import useSWR from "swr";
+import { useDispatch, useSelector } from "react-redux";
 import { axios } from "@/components/api/Axios";
 import { UserType } from "@/types";
+import { RootState } from "@/reducks/store/store";
+import { setUser, clearUser } from "@/reducks/users/userSlice";
 
-export const getUser = async (): Promise<UserType | null> => {
+// ユーザーデータ取得用関数
+const fetchUser = async (): Promise<UserType | null> => {
   try {
-    await axios.get("sanctum/csrf-cookie"); // CSRFトークン取得
-    const response = await axios.get<UserType>("api/v1/user"); // ユーザー情報取得
+    await axios.get("sanctum/csrf-cookie");
+    const response = await axios.get<UserType>("api/v1/user");
     return {
       ...response.data,
       isLogin: true,
@@ -14,3 +19,27 @@ export const getUser = async (): Promise<UserType | null> => {
     return null;
   }
 };
+
+// `useUser` フック（SWR + Redux）
+export function useUser() {
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
+
+  const { data, error, isLoading, mutate } = useSWR("api/v1/user", fetchUser, {
+    shouldRetryOnError: false,
+    revalidateOnFocus: false, // ページフォーカス時の再取得を無効化
+    onSuccess: (userData) => {
+      if (userData) dispatch(setUser(userData));
+    },
+    onError: () => {
+      dispatch(clearUser());
+    },
+  });
+
+  return {
+    user: user ?? data, // Redux の `user` を優先
+    isLoading,
+    isError: error,
+    mutate, // `mutate()` を `useLoginForm` で使用
+  };
+}
