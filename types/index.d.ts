@@ -16,7 +16,7 @@ export type NavItem = {
   disabled?: boolean;
 };
 
-export type HeaderContentConfig = {
+export type ContentConfig = {
   mainNav: NavItem[];
 };
 

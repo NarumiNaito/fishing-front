@@ -1,7 +1,7 @@
 "use client";
-import { HeaderContentConfig } from "@/types/index";
+import { ContentConfig } from "@/types/index";
 
-export const publicContent: HeaderContentConfig = {
+export const publicContent: ContentConfig = {
   mainNav: [
     {
       title: "ホーム",
@@ -18,7 +18,7 @@ export const publicContent: HeaderContentConfig = {
   ],
 };
 
-export const privateContent: HeaderContentConfig = {
+export const privateContent: ContentConfig = {
   mainNav: [
     {
       title: "ホーム",
@@ -39,7 +39,7 @@ export const privateContent: HeaderContentConfig = {
   ],
 };
 
-export const authContent: HeaderContentConfig = {
+export const authContent: ContentConfig = {
   mainNav: [
     {
       title: "新規登録",
@@ -52,7 +52,7 @@ export const authContent: HeaderContentConfig = {
   ],
 };
 
-export const userContent: HeaderContentConfig = {
+export const userContent: ContentConfig = {
   mainNav: [
     {
       title: "マイページ",
