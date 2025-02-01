@@ -5,9 +5,9 @@ export default function Main() {
   return (
     <>
       <section className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
-        <div className="text-center space-y-6">
-          <h2 className="font-extrabold text-3xl md:text-6xl ">サービスの特徴</h2>
-          <p className="text-muted-foreground sm:text-lg sm:leading-7">下記参照</p>
+        <div className="space-y-6 px-12">
+          <h2 className="font-extrabold text-2xl md:text-5xl ">調査速報</h2>
+          <p className="text-muted-foreground sm:text-lg sm:leading-7">魚、場所、状況、これらの釣り情報は釣果につまっている！釣りの参考にしよう！</p>
         </div>
         <div className="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4 m-5">
           <div className="bg-background border p-5 rounded-lg">
@@ -53,18 +53,9 @@ export default function Main() {
             </div>
           </div>
         </div>
-        <div className="mx-auto text-center ">
-          <p>ログイン後に当サイトを使用できます。</p>
-        </div>
       </section>
-      <section id="contact" className="py-8 md:py-12 lg:py-24">
-        <div className="mx-auto text-center space-y-3">
-          <h2 className="font-bold text-3xl">コンタクト</h2>
-          <p className="text-muted-foreground">DMは下記よりお願いいたします</p>
-          <Link href={siteConfig.links.x} className="underline underline-offset-5" target="_blank" rel="noreferrer">
-            こちらから
-          </Link>
-        </div>
+      <section className="py-8 md:py-12 lg:py-24">
+        <div className="mx-auto text-center space-y-3"></div>
       </section>
     </>
   );
