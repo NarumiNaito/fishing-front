@@ -3,10 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { axios } from "@/components/api/Axios";
-import { getUser } from "@/reducks/users/actions";
-import { updateUser } from "@/reducks/users/reducers";
-import { UserType } from "@/types";
-import { useAppDispatch } from "@/reducks/store/store";
+import { useUser } from "@/reducks/users/actions";
 
 const FormSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -22,7 +19,7 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 
 export function useLoginForm() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
+  const { mutate } = useUser(); // `mutate()` を取得してキャッシュ更新に使用
 
   const form = useForm<FormSchemaType>({
     defaultValues: { email: "", password: "" },
@@ -36,15 +33,12 @@ export function useLoginForm() {
       await axios.get("sanctum/csrf-cookie");
       await axios.post("api/v1/login", requestUser);
 
-      const userData: UserType | null = await getUser();
-      if (userData) {
-        dispatch(updateUser(userData));
-      } else {
-        console.error("ユーザー情報が取得できませんでした");
-      }
+      //  SWR の `mutate()` を使ってキャッシュを更新 & 再取得
+      await mutate();
+
       router.push("/dashboard");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error("ログインエラー:", error.response?.data?.message || error.message);
     }
   });
 
