@@ -6,10 +6,10 @@ import { RootState } from "@/reducks/store/store";
 import { setUser, clearUser } from "@/reducks/users/userSlice";
 
 // ユーザーデータ取得用関数
-const fetchUser = async (): Promise<UserType | null> => {
+const fetchUser = async (key: string): Promise<UserType | null> => {
   try {
     await axios.get("sanctum/csrf-cookie");
-    const response = await axios.get<UserType>("api/v1/user");
+    const response = await axios.get<UserType>(key);
     return {
       ...response.data,
       isLogin: true,
@@ -27,7 +27,7 @@ export function useUser() {
 
   const { data, error, isLoading, mutate } = useSWR("api/v1/user", fetchUser, {
     shouldRetryOnError: false,
-    revalidateOnFocus: false, // ページフォーカス時の再取得を無効化
+    revalidateOnFocus: false,
     onSuccess: (userData) => {
       if (userData) dispatch(setUser(userData));
     },
