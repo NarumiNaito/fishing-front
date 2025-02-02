@@ -6,7 +6,7 @@ export default function Main() {
     <>
       <section className="bg-cyan-100 py-8 md:py-12 lg:py-24 ">
         <div className="space-y-6 px-12">
-          <h2 className="font-extrabold text-2xl md:text-5xl ">調査速報</h2>
+          <h2 className="font-extrabold text-2xl md:text-5xl ">釣果速報</h2>
           <p className="text-muted-foreground sm:text-lg sm:leading-7">魚、場所、状況、これらの釣り情報は釣果につまっている！釣りの参考にしよう！</p>
         </div>
         <div className="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-4 m-5">

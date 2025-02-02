@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { axios } from "@/components/api/Axios";
+import { useUser } from "@/reducks/users/actions";
 
 const FormSchema = z
   .object({
@@ -39,6 +40,7 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 
 export function useRegisterForm() {
   const router = useRouter();
+  const { mutate } = useUser(); // `mutate()` を取得してキャッシュ更新に使用
 
   const form = useForm<FormSchemaType>({
     defaultValues: {
@@ -60,6 +62,9 @@ export function useRegisterForm() {
     try {
       await axios.get("sanctum/csrf-cookie");
       await axios.post("api/v1/register", requestUser);
+
+      mutate();
+
       router.push("/dashboard");
     } catch (error) {
       console.error("予期しないエラー:", error);
