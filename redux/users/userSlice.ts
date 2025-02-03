@@ -1,9 +1,26 @@
+import { UserType, UserState } from "@/types";
+import { initialState } from "../store/initialState";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import useSWR from "swr";
 import { useDispatch, useSelector } from "react-redux";
-import { axios } from "@/components/api/Axios";
-import { UserType } from "@/types";
-import { RootState } from "@/reducks/store/store";
-import { setUser, clearUser } from "@/reducks/users/userSlice";
+import { axios } from "@/lib/api/Axios";
+import { RootState } from "@/redux/store/store";
+
+const userSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {
+    setUser(state: any, action: PayloadAction<UserType | null>) {
+      state.user = action.payload;
+    },
+    clearUser(state: any) {
+      state.user = null;
+    },
+  },
+});
+
+export const { setUser, clearUser } = userSlice.actions;
+export default userSlice.reducer;
 
 // ユーザーデータ取得用関数
 const fetchUser = async (key: string): Promise<UserType | null> => {

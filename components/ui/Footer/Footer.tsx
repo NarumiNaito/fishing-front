@@ -1,7 +1,7 @@
 import { footerContent } from "@/const/footerContent";
 import Link from "next/link";
-import { useAppSelector } from "@/reducks/store/store";
-import { getLogin } from "@/reducks/users/selectors";
+import { useAppSelector } from "@/redux/store/store";
+import { getUser } from "@/redux/users/selectors";
 
 export default function Footer() {
   // const selector = useAppSelector((state) => state);

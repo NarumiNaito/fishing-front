@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
-import { store } from "@/reducks/store/store";
+import { store } from "@/redux/store/store";
 
 type StoreProviderProps = {
   children: ReactNode;

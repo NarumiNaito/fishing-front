@@ -20,15 +20,15 @@ export type ContentConfig = {
   mainNav: NavItem[];
 };
 
-export type UserType = {
+export interface UserType {
   id: string;
   name: string;
   email: string;
   password: string;
   status: string;
   isLogin: boolean;
-};
+}
 
 export interface UserState {
-  user: UserType | null;
+  user: { id: string; name: string; email: string; password: string; status: string; isLogin: boolean };
 }
