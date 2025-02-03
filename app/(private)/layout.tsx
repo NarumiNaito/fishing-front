@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/reducks/store/store";
-import { getLogin } from "@/reducks/users/selectors";
+import { useAppSelector } from "@/redux/store/store";
+import { getLogin } from "@/redux/users/selectors";
 import Loading from "../loading";
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {

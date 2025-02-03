@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
-import "./globals.css";
+import "../style/globals.css";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/const/siteConfig";
-import StoreProvider from "@/reducks/store/StoreProvider";
-import Footer from "@/components/layouts/Footer/Footer";
-import Header from "@/components/layouts/Header/Header";
+import StoreProvider from "@/redux/store/StoreProvider";
+import Footer from "@/components/ui/Footer/Footer";
+import Header from "@/components/ui/Header/Header";
 
 const fontNotSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
