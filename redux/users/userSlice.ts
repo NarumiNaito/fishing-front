@@ -1,4 +1,4 @@
-import { UserType, UserState } from "@/types";
+import { UserType } from "@/types";
 import { initialState } from "../store/initialState";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import useSWR from "swr";
@@ -40,9 +40,9 @@ const fetchUser = async (key: string): Promise<UserType | null> => {
 // `useUser` フック（SWR + Redux）
 export function useUser() {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.user);
 
-  const { data, error, isLoading, mutate } = useSWR("api/v1/user", fetchUser, {
+  const { data, error, isLoading, mutate } = useSWR("api/user", fetchUser, {
     shouldRetryOnError: false,
     revalidateOnFocus: false,
     onSuccess: (userData) => {

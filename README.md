@@ -11,7 +11,7 @@ fishing のフロントリポジトリです。
 - Form ライブラリ：React Hook Form 7.54.2
 - バリデーションライブラリ：zod 3.24.1
 - フェッチライブラリ：SWR 2.3.0
-- 状態管理ライブラリ：Redux(ReduxToolkit) 5.0.1
+- 状態管理ライブラリ：Redux(ReduxToolkit,redux-persist) 5.0.1
 - UI ライブラリ：shadcn-ui 0.8.0
 - UI ライブラリ：tailwindcss 3.4.1
 - アニメーションライブラリ：framer-motion 12.0.5

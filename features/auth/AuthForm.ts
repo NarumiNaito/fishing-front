@@ -51,9 +51,9 @@ export function AuthForm({ type }: AuthFormProps) {
     try {
       await axios.get("sanctum/csrf-cookie");
       if (isLogin) {
-        await axios.post("api/v1/login", { email: data.email, password: data.password });
+        await axios.post("api/login", { email: data.email, password: data.password });
       } else {
-        await axios.post("api/v1/register", {
+        await axios.post("api/register", {
           name: data.name,
           email: data.email,
           password: data.password,
