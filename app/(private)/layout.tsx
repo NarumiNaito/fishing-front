@@ -9,8 +9,7 @@ import Loading from "../loading";
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const selector = useAppSelector((state) => state);
-  // const isLogin = getLogin(selector);
-  const isLogin = true;
+  const isLogin = getLogin(selector);
 
   useEffect(() => {
     if (!isLogin) {
