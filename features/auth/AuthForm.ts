@@ -60,7 +60,7 @@ export function AuthForm({ type }: AuthFormProps) {
         });
       }
 
-      mutate();
+      await mutate();
       router.push("/dashboard");
     } catch (error: any) {
       console.error(`${isLogin ? "ログイン" : "登録"}エラー:`, error.response?.data?.message || error.message);
