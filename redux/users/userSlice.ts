@@ -16,7 +16,7 @@ const userSlice = createSlice({
     clearUser(state: any) {
       state.user = null;
     },
-    setLogin: (state, action: PayloadAction<boolean>) => {
+    setLogin: (state: any, action: PayloadAction<boolean>) => {
       state.user.isLogin = action.payload;
     },
   },

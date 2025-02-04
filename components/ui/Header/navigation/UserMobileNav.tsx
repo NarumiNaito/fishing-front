@@ -12,7 +12,7 @@ interface MobileNavProps {
   items?: NavItem[];
   children?: ReactNode;
 }
-export default function MobileNav({ items }: MobileNavProps) {
+export default function UserMobileNav({ items }: MobileNavProps) {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { mutate } = useSWRConfig();
@@ -34,8 +34,8 @@ export default function MobileNav({ items }: MobileNavProps) {
   };
   return (
     <div className="fixed top-16 left-0 right-0 bottom-0 z-50 p-6 shadow-md animate-in slide-in-from-bottom-80">
-      <div className="grid gap-5 bg-popover p-4 text-popover-foreground shadow-md">
-        <nav className="text-sm flex gap-5">
+      <div className="grid border rounded-lg gap-5 bg-popover p-4 text-popover-foreground shadow-md">
+        <nav className="text-sm flex flex-col gap-5">
           {items?.map((item, index) => (
             <Link key={index} href={item.href}>
               {item.title}

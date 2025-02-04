@@ -2,7 +2,7 @@ import { NavItem } from "@/types";
 import { ReactNode, useState } from "react";
 import UserMobileNav from "./UserMobileNav";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin } from "@/redux/users/selectors";
+import { getLogin, getUser } from "@/redux/users/selectors";
 import Link from "next/link";
 
 interface MainNavProps {
@@ -10,16 +10,18 @@ interface MainNavProps {
   children?: ReactNode;
 }
 
-export default function AuthNav({ items }: MainNavProps) {
+export default function UserMainNav({ items }: MainNavProps) {
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
+  const user = getUser(selector);
+
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   return (
     <>
       {isLogin ? (
         <div className="flex items-center gap-5">
           <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
-            <span>ユーザー</span>
+            <span>{user[0].name}</span>
             {showMobileMenu && <UserMobileNav items={items} />}
           </button>
         </div>
