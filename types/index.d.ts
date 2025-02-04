@@ -30,5 +30,6 @@ export interface UserType {
 }
 
 export interface UserState {
-  user: { id: string; name: string; email: string; password: string; status: string; isLogin: boolean };
+  user: UserType[];
+  isLogin: boolean;
 }

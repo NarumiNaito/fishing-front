@@ -11,10 +11,6 @@ export const publicContent: ContentConfig = {
       title: "釣果情報",
       href: "/results",
     },
-    {
-      title: "タックルランキング",
-      href: "/gear",
-    },
   ],
 };
 
@@ -22,15 +18,11 @@ export const privateContent: ContentConfig = {
   mainNav: [
     {
       title: "ホーム",
-      href: "/",
+      href: "/dashboard",
     },
     {
       title: "釣果情報",
       href: "/results",
-    },
-    {
-      title: "タックルランキング",
-      href: "/gear",
     },
     {
       title: "マップ",
@@ -55,12 +47,8 @@ export const authContent: ContentConfig = {
 export const userContent: ContentConfig = {
   mainNav: [
     {
-      title: "マイページ",
-      href: "/myPage",
-    },
-    {
-      title: "プロフィール",
-      href: "/register",
+      title: "プロフィール編集",
+      href: "/profile",
     },
     {
       title: "自己紹介",
