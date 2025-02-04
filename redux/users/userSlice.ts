@@ -16,10 +16,13 @@ const userSlice = createSlice({
     clearUser(state: any) {
       state.user = null;
     },
+    setLogin: (state, action: PayloadAction<boolean>) => {
+      state.user.isLogin = action.payload;
+    },
   },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, setLogin } = userSlice.actions;
 export default userSlice.reducer;
 
 // ユーザーデータ取得用関数
