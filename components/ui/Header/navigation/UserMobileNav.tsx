@@ -1,48 +1,40 @@
-import { axios } from "@/lib/api/Axios";
-import { persistor, useAppDispatch } from "@/redux/store/store";
-import { setLogin } from "@/redux/users/userSlice";
 import { NavItem } from "@/types";
-import { useLockBodyScroll } from "@uidotdev/usehooks";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { useSWRConfig } from "swr";
+import { useLogout } from "@/hooks/useLogout";
+import { X } from "lucide-react";
+import Link from "next/link";
 
 interface MobileNavProps {
   items?: NavItem[];
   children?: ReactNode;
+  onClose: () => void;
 }
-export default function UserMobileNav({ items }: MobileNavProps) {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const { mutate } = useSWRConfig();
-  useLockBodyScroll();
-  const handleLogout = async () => {
-    try {
-      await axios.get("sanctum/csrf-cookie");
-      await axios.post("api/user/logout");
-      dispatch(setLogin(false));
-      await persistor.flush();
-      await persistor.purge();
-      sessionStorage.removeItem("persist:user");
-      mutate(null, false);
-      mutate("/api/user", null, false);
-      router.push("/");
-    } catch (error) {
-      console.error("ログアウトに失敗しました", error);
-    }
-  };
+
+export default function UserMobileNav({ items, onClose }: MobileNavProps) {
+  const { handleLogout } = useLogout();
   return (
-    <div className="fixed top-16 left-0 right-0 bottom-0 z-50 p-6 shadow-md animate-in slide-in-from-bottom-80">
-      <div className="grid border rounded-lg gap-5 bg-popover p-4 text-popover-foreground shadow-md">
-        <nav className="text-sm flex flex-col gap-5">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-end">
+      <div className="w-72 text-gray-700 bg-cyan-100 shadow-lg p-6 animate-in slide-in-from-right-80 flex flex-col">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-lg">マイページ</h2>
+          <button onClick={onClose} className="hover:text-gray-700">
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-3">
           {items?.map((item, index) => (
-            <Link key={index} href={item.href}>
+            <Link key={index} href={item.href} className="text-gray-700 hover:text-blue-600 transition duration-200" onClick={onClose}>
               {item.title}
             </Link>
           ))}
-          <button onClick={handleLogout}>ログアウト</button>
         </nav>
+
+        <div className="py-3">
+          <button onClick={() => handleLogout(onClose)} className="transition duration-200 hover:text-blue-600">
+            ログアウト
+          </button>
+        </div>
       </div>
     </div>
   );

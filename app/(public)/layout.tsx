@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAppSelector } from "@/redux/store/store";
 import { getLogin } from "@/redux/users/selectors";
 import Loading from "../loading";

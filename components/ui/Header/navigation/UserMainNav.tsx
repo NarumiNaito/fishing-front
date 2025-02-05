@@ -22,7 +22,7 @@ export default function UserMainNav({ items }: MainNavProps) {
         <div className="flex items-center gap-5">
           <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
             <span>{user[0].name}</span>
-            {showMobileMenu && <UserMobileNav items={items} />}
+            {showMobileMenu && <UserMobileNav items={items} onClose={() => setShowMobileMenu(false)} />}
           </button>
         </div>
       ) : (

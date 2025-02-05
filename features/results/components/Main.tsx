@@ -1,6 +1,3 @@
-import { siteConfig } from "@/const/siteConfig";
-import Link from "next/link";
-
 export default function Main() {
   return (
     <>
