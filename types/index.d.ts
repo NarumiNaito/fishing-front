@@ -30,6 +30,5 @@ export interface UserType {
 }
 
 export interface UserState {
-  user: UserType[];
-  isLogin: boolean;
+  user: UserType | null;
 }

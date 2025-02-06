@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
-import { useUser } from "@/redux/users/userSlice";
+import { useUser } from "@/hooks/useUser";
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -39,7 +39,7 @@ type AuthFormProps = {
 
 export function AuthForm({ type }: AuthFormProps) {
   const router = useRouter();
-  const { mutate } = useUser();
+  const { refetchUser } = useUser();
   const isLogin = type === "login";
 
   const form = useForm({
@@ -60,7 +60,7 @@ export function AuthForm({ type }: AuthFormProps) {
         });
       }
 
-      await mutate();
+      await refetchUser(); // Redux のユーザー情報を更新
       router.push("/dashboard");
     } catch (error: any) {
       console.error(`${isLogin ? "ログイン" : "登録"}エラー:`, error.response?.data?.message || error.message);
