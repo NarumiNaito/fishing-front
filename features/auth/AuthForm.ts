@@ -4,6 +4,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
+import { useState } from "react";
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -41,6 +42,8 @@ export function AuthForm({ type }: AuthFormProps) {
   const router = useRouter();
   const { refetchUser } = useUser();
   const isLogin = type === "login";
+  const [isError, setIsError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState<string | null>(null);
 
   const form = useForm({
     defaultValues: isLogin ? { email: "", password: "" } : { name: "", email: "", password: "", confirmPassword: "" },
@@ -50,22 +53,27 @@ export function AuthForm({ type }: AuthFormProps) {
   const onSubmit = form.handleSubmit(async (data) => {
     try {
       await axios.get("sanctum/csrf-cookie");
+      let response;
       if (isLogin) {
-        await axios.post("api/login", { email: data.email, password: data.password });
+        response = await axios.post("api/login", { email: data.email, password: data.password });
       } else {
-        await axios.post("api/register", {
+        response = await axios.post("api/register", {
           name: data.name,
           email: data.email,
           password: data.password,
         });
       }
 
+      const successMessage = (response.data as { message?: string }).message || "ログインに成功しました";
+      setIsSuccess(successMessage);
       await refetchUser(); // Redux のユーザー情報を更新
       router.push("/dashboard");
     } catch (error: any) {
+      const errorMessage = error.response?.data?.message || "エラーが発生しました";
+      setIsError(errorMessage);
       console.error(`${isLogin ? "ログイン" : "登録"}エラー:`, error.response?.data?.message || error.message);
     }
   });
 
-  return { form, onSubmit };
+  return { form, onSubmit, isError, isSuccess };
 }

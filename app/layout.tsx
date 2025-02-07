@@ -6,6 +6,7 @@ import { siteConfig } from "@/const/siteConfig";
 import StoreProvider from "@/redux/store/StoreProvider";
 import Footer from "@/components/ui/Footer/Footer";
 import Header from "@/components/ui/Header/Header";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontNotSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <StoreProvider>
           <Header />
           <main>{children}</main>
+          <Toaster />
           <Footer />
         </StoreProvider>
       </body>
