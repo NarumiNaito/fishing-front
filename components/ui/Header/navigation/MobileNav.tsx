@@ -6,10 +6,9 @@ import { ReactNode } from "react";
 
 interface MobileNavProps {
   items?: NavItem[];
-  path: string;
   children?: ReactNode;
 }
-export default function MobileNav({ items, path }: MobileNavProps) {
+export default function MobileNav({ items }: MobileNavProps) {
   useLockBodyScroll();
   return (
     <div className="fixed top-16 left-0 right-0 bottom-0 z-50 p-6 shadow-md md:hidden animate-in slide-in-from-bottom-80">

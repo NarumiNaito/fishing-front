@@ -4,6 +4,7 @@ import UserMobileNav from "./UserMobileNav";
 import { useAppSelector } from "@/redux/store/store";
 import { getLogin, getUser, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
 
 interface MainNavProps {
   items?: NavItem[];
@@ -22,10 +23,16 @@ export default function UserMainNav({ items }: MainNavProps) {
     <>
       {isLogin ? (
         <div className="flex items-center gap-5">
-          <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
+          <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="flex items-center gap-2">
+            <Avatar>
+              <AvatarImage src="" alt="@shadcn" />
+              <AvatarFallback>
+                <AvatarNoneImage />
+              </AvatarFallback>
+            </Avatar>
             <span>{userName}</span>
-            {showMobileMenu && <UserMobileNav items={items} onClose={() => setShowMobileMenu(false)} />}
           </button>
+          {showMobileMenu && <UserMobileNav items={items} onClose={() => setShowMobileMenu(false)} />}
         </div>
       ) : (
         <div className="flex items-center gap-5">
