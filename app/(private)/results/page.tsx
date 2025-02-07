@@ -1,11 +1,11 @@
 import MainVideo from "@/components/ui/MainVideo";
-import Main from "@/features/results/components/Main";
+import ResultsContent from "@/features/results/ResultsContent";
 
 export default function MyPage() {
   return (
     <>
       <MainVideo />
-      <Main />
+      <ResultsContent />
     </>
   );
 }
