@@ -32,7 +32,7 @@ export default function MainNav({ items }: MainNavProps) {
       </nav>
       <button className="md:hidden" onClick={() => setShowMobileMenu(!showMobileMenu)}>
         <span>メニュー</span>
-        {showMobileMenu && <MobileNav items={items} path={path} />}
+        {showMobileMenu && <MobileNav items={items} />}
       </button>
     </div>
   );
