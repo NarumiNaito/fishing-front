@@ -25,7 +25,7 @@ export default function UserMainNav({ items }: MainNavProps) {
         <div className="flex items-center gap-5">
           <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="flex items-center gap-2">
             <Avatar>
-              <AvatarImage src="" alt="@shadcn" />
+              <AvatarImage src="" alt="" />
               <AvatarFallback>
                 <AvatarNoneImage />
               </AvatarFallback>

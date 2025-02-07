@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useAppSelector } from "@/redux/store/store";
 import { getUserId } from "@/redux/users/selectors";
 import { Buffer } from "buffer";
+import { ProfileEditDialog } from "@/features/profile/ProfileEditDialog";
 
 interface MobileNavProps {
   items?: NavItem[];
@@ -30,6 +31,7 @@ export default function UserMobileNav({ items, onClose }: MobileNavProps) {
         </div>
 
         <nav className="flex flex-col gap-3">
+          {/* <ProfileEditDialog /> */}
           {items?.map((item, index) => (
             <Link key={index} href={`${item.href}/${id}`} className="text-gray-700 hover:text-blue-600 transition duration-200" onClick={onClose}>
               {item.title}

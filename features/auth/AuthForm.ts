@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
 import { useState } from "react";
+import { useAppSelector } from "@/redux/store/store";
+import { getUserId } from "@/redux/users/selectors";
+import { Buffer } from "buffer";
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -41,6 +44,9 @@ type AuthFormProps = {
 export function AuthForm({ type }: AuthFormProps) {
   const router = useRouter();
   const { refetchUser } = useUser();
+  const selector = useAppSelector((state) => state);
+  const userId = getUserId(selector);
+  const id = Buffer.from(String(userId)).toString("base64");
   const isLogin = type === "login";
   const [isError, setIsError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState<string | null>(null);
@@ -67,7 +73,7 @@ export function AuthForm({ type }: AuthFormProps) {
       const successMessage = (response.data as { message?: string }).message || "ログインに成功しました";
       setIsSuccess(successMessage);
       await refetchUser(); // Redux のユーザー情報を更新
-      router.push("/dashboard");
+      router.push(`/dashboard/${id}`);
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "エラーが発生しました";
       setIsError(errorMessage);
