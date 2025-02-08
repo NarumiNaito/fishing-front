@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReactNode, useState } from "react";
 import MobileNav from "./MobileNav";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin } from "@/redux/users/selectors";
+import { getLogin, getUserId } from "@/redux/users/selectors";
 
 interface MainNavProps {
   items?: NavItem[];
@@ -15,8 +15,8 @@ export default function MainNav({ items }: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
-
-  const path = isLogin ? "/dashboard" : "/";
+  const id = getUserId(selector);
+  const path = isLogin ? `/dashboard/${id}` : "/";
 
   return (
     <div className="flex items-center gap-5">

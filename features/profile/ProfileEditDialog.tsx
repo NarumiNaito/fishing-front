@@ -10,8 +10,8 @@ export function ProfileEditDialog() {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <button>プロフィール編集</button>
+      <DialogTrigger asChild>
+        <button className="border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer">プロフィール編集</button>
       </DialogTrigger>
       <Form {...form}>
         <DialogContent className="sm:max-w-[425px]">

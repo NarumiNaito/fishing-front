@@ -20,7 +20,7 @@ export function useLogout() {
       mutate(null, false);
       mutate("/api/user", null, false);
       router.push("/");
-      if (onClose) onClose();
+      // if (onClose) onClose();
     } catch (error) {
       console.error("ログアウトに失敗しました", error);
     }
