@@ -4,9 +4,10 @@ import { useAppSelector } from "@/redux/store/store";
 import { getLogin, getUser, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ProfileEditDialog } from "@/features/profile/ProfileEditDialog";
 import { useLogout } from "@/hooks/useLogout";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 interface MainNavProps {
   items?: NavItem[];
   children?: ReactNode;
@@ -24,8 +25,8 @@ export default function UserMainNav({ items }: MainNavProps) {
     <>
       {isLogin ? (
         <div className="flex items-center gap-5 ">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+          <Sheet>
+            <SheetTrigger asChild>
               <div className="flex items-center gap-2 cursor-pointer">
                 <Avatar>
                   <AvatarImage src="" alt="" />
@@ -35,22 +36,23 @@ export default function UserMainNav({ items }: MainNavProps) {
                 </Avatar>
                 <span>{userName}</span>
               </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>マイページ</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <ProfileEditDialog />
-                <DropdownMenuItem>過去の釣果</DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <button onClick={() => handleLogout()} className="transition duration-200 hover:text-blue-600">
-                  ログアウト
-                </button>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </SheetTrigger>
+            <SheetContent className="bg-cyan-100">
+              <SheetHeader>
+                <SheetTitle>マイページ</SheetTitle>
+              </SheetHeader>
+              <div className="grid gap-4 py-12 items-start">
+                <div className="flex flex-col gap-3 items-start transition duration-200 hover:text-blue-600">
+                  <ProfileEditDialog />
+                </div>
+                <div className="gap-3">
+                  <button onClick={() => handleLogout()} className="transition duration-200 hover:text-blue-600">
+                    ログアウト
+                  </button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       ) : (
         <div className="flex items-center gap-5">
