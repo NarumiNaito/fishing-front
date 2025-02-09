@@ -16,7 +16,7 @@ export default function MainNav({ items }: MainNavProps) {
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
   const id = getUserId(selector);
-  const path = isLogin ? `/dashboard/${id}` : "/";
+  const path = isLogin ? "/dashboard" : "/";
 
   return (
     <div className="flex items-center gap-5">

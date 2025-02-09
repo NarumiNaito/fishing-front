@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { FormInput } from "@/hooks/useForm";
 import { Form } from "@/components/ui/form";
 import { ProfileForm } from "./ProfileForm";
@@ -11,7 +10,7 @@ export function ProfileEditDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer">プロフィール編集</button>
+        <button className="px-2 py-1.5 text-sm transition duration-200 hover:text-blue-600">プロフィール編集</button>
       </DialogTrigger>
       <Form {...form}>
         <DialogContent className="sm:max-w-[425px]">

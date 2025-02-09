@@ -73,7 +73,7 @@ export function AuthForm({ type }: AuthFormProps) {
       const successMessage = (response.data as { message?: string }).message || "ログインに成功しました";
       setIsSuccess(successMessage);
       await refetchUser(); // Redux のユーザー情報を更新
-      router.push(`/dashboard/${id}`);
+      router.push("/dashboard");
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "エラーが発生しました";
       setIsError(errorMessage);
