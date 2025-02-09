@@ -1,11 +1,14 @@
+"use client";
+
 import { footerContent } from "@/const/footerContent";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/store/store";
-import { getUser } from "@/redux/users/selectors";
+import { getLogin, getUser } from "@/redux/users/selectors";
 
 export default function Footer() {
-  // const selector = useAppSelector((state) => state);
-  // const isLogin = getLogin(selector);
+  const selector = useAppSelector((state) => state);
+  const isLogin = getLogin(selector);
+  const path = isLogin ? "/dashboard" : "/";
   return (
     <footer className="mx-auto py-10 bg-primary text-primary-foreground">
       <div className="text-center space-x-5">
@@ -16,16 +19,7 @@ export default function Footer() {
         ))}
       </div>
       <div className="text-center space-x-5">
-        {/* {isLogin ? (
-          <Link href={"/"} className="">
-            <span className="font-bold">Anglers Map</span>
-          </Link>
-        ) : (
-          <Link href={"/dashboard"} className="">
-            <span className="font-bold">Anglers Map</span>
-          </Link>
-        )} */}
-        <Link href={"/"} className="">
+        <Link href={path} className="">
           <span className="font-bold">Anglers Map</span>
         </Link>
       </div>
