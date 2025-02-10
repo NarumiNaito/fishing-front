@@ -9,7 +9,7 @@ export function useLogout() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
 
-  const handleLogout = async (onClose?: () => void) => {
+  const handleLogout = async () => {
     try {
       await axios.get("sanctum/csrf-cookie");
       await axios.post("api/user/logout");
@@ -20,9 +20,17 @@ export function useLogout() {
       mutate(null, false);
       mutate("/api/user", null, false);
       router.push("/");
-      // if (onClose) onClose();
-    } catch (error) {
-      console.error("ログアウトに失敗しました", error);
+    } catch (error: any) {
+      if ((error as any).isAxiosError) {
+        if (error.response?.status === 401) {
+          console.warn("401エラー: 未認証のためリダイレクト");
+          router.push("/");
+        } else {
+          console.error("ログアウトに失敗しました", error);
+        }
+      } else {
+        console.error("ログアウト中に予期しないエラーが発生しました", error);
+      }
     }
   };
 

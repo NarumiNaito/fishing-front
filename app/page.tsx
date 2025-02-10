@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import Home from "./(public)/page";
-import { motion } from "framer-motion";
 import Earth from "@/components/ui/Earth";
 
 export default function FirstLoading() {
@@ -17,25 +16,7 @@ export default function FirstLoading() {
 
   if (loading) {
     return (
-      // <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      //   <div className="flex gap-2">
-      //     {[0, 1, 2].map((i) => (
-      //       <motion.div
-      //         key={i}
-      //         className="w-4 h-4 bg-white rounded-full"
-      //         animate={{
-      //           y: [0, -10, 0],
-      //         }}
-      //         transition={{
-      //           duration: 0.6,
-      //           repeat: Infinity,
-      //           delay: i * 0.2,
-      //         }}
-      //       />
-      //     ))}
-      //   </div>
-      // </div>
-      <div className="flex items-center justify-center min-h-screen bg-black">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black from-25% via-slate-700 via-50% to-black to-75%">
         <div className="w-60 h-60">
           <Earth />
         </div>

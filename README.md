@@ -14,7 +14,9 @@ fishing のフロントリポジトリです。
 - 状態管理ライブラリ：Redux(ReduxToolkit,redux-persist) 5.0.1
 - UI ライブラリ：shadcn-ui 0.8.0
 - UI ライブラリ：tailwindcss 3.4.1
+- WebGL ライブラリ：ReactThreeFiber 8.13.2
 - アニメーションライブラリ：framer-motion 12.0.5
+- アイコン：iconbuddy
 
 ## 環境構築
 
