@@ -4,7 +4,7 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/hooks/useForm";
 import AuthVideo from "@/features/auth/AuthVideo";
-import { AuthForm } from "@/features/auth/AuthForm";
+import { useAuthForm } from "@/features/auth/AuthUser";
 import AuthCard from "@/features/auth/AuthCard";
 import { AuthToast } from "@/features/auth/AuthToast";
 import { useState } from "react";
@@ -13,7 +13,7 @@ import { TogglePasswordOfIcon, TogglePasswordOnIcon } from "@/components/ui/togg
 export default function RegisterFormPage() {
   const [password, setPassword] = useState(false);
 
-  const { form, onSubmit, isError, isSuccess } = AuthForm({ type: "register" });
+  const { form, onSubmit, isError, isSuccess } = useAuthForm({ type: "register" });
   const togglePassword = () => {
     setPassword(!password);
   };
