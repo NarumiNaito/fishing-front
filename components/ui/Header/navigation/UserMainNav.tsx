@@ -5,8 +5,9 @@ import { getLogin, getUser, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
 import { ProfileEditDialog } from "@/features/profile/ProfileEditDialog";
-import { useLogout } from "@/hooks/useLogout";
+import { useLogout } from "@/features/auth/AuthUser";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 interface MainNavProps {
   items?: NavItem[];
   children?: ReactNode;

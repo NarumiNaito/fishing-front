@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useAppSelector } from "@/redux/store/store";
 import { getUserId } from "@/redux/users/selectors";
 import { Buffer } from "buffer";
+import { persistor, useAppDispatch } from "@/redux/store/store";
+import { setLogin } from "@/redux/users/userSlice";
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -41,12 +43,9 @@ type AuthFormProps = {
   type: "login" | "register";
 };
 
-export function AuthForm({ type }: AuthFormProps) {
+export function useAuthForm({ type }: AuthFormProps) {
   const router = useRouter();
   const { refetchUser } = useUser();
-  const selector = useAppSelector((state) => state);
-  const userId = getUserId(selector);
-  const id = Buffer.from(String(userId)).toString("base64");
   const isLogin = type === "login";
   const [isError, setIsError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState<string | null>(null);
@@ -82,4 +81,35 @@ export function AuthForm({ type }: AuthFormProps) {
   });
 
   return { form, onSubmit, isError, isSuccess };
+}
+
+export function useLogout() {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get("sanctum/csrf-cookie");
+      await axios.post("api/user/logout");
+      dispatch(setLogin(false));
+      await persistor.flush();
+      await persistor.purge();
+      sessionStorage.removeItem("persist:user");
+      router.push("/login");
+    } catch (error: any) {
+      if ((error as any).isAxiosError) {
+        if (error.response?.status === 401) {
+          console.warn("401エラー: 未認証のためリダイレクト");
+          dispatch(setLogin(false));
+          router.push("/login");
+        } else {
+          console.error("ログアウトに失敗しました", error);
+        }
+      } else {
+        console.error("ログアウト中に予期しないエラーが発生しました", error);
+      }
+    }
+  };
+
+  return { handleLogout };
 }
