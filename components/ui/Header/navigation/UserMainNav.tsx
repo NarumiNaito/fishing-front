@@ -1,7 +1,7 @@
 import { NavItem } from "@/types";
 import { ReactNode } from "react";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin, getUser, getUserName } from "@/redux/users/selectors";
+import { getLogin, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
 import { ProfileEditDialog } from "@/features/profile/ProfileEditDialog";
@@ -17,10 +17,8 @@ export default function UserMainNav({ items }: MainNavProps) {
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
   const userName = getUserName(selector);
-  const user = getUser(selector);
   const { handleLogout } = useLogout();
 
-  console.log(user);
   return (
     <>
       {isLogin ? (

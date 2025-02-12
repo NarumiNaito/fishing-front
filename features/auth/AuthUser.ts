@@ -5,9 +5,6 @@ import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
 import { useState } from "react";
-import { useAppSelector } from "@/redux/store/store";
-import { getUserId } from "@/redux/users/selectors";
-import { Buffer } from "buffer";
 import { persistor, useAppDispatch } from "@/redux/store/store";
 import { setLogin } from "@/redux/users/userSlice";
 

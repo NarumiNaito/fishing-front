@@ -14,7 +14,7 @@ export function AuthToast({ isError, isSuccess }: AuthToastProps) {
   useEffect(() => {
     if (isError) {
       toast({
-        title: "エラー発生",
+        title: "エラー",
         description: isError,
         duration: 10000,
         variant: "destructive",
