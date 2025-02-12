@@ -4,8 +4,8 @@ import { useAppSelector } from "@/redux/store/store";
 import { getLogin, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
-import { ProfileEditDialog } from "@/features/profile/ProfileEditDialog";
-import { useLogout } from "@/features/auth/AuthUser";
+import { ProfileDialog } from "@/features/profile/ProfileDialog";
+import { useLogout } from "@/features/profile/ProfileUser";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface MainNavProps {
@@ -39,7 +39,7 @@ export default function UserMainNav({ items }: MainNavProps) {
               <DropdownMenuLabel>マイページ</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <ProfileEditDialog />
+                <ProfileDialog />
                 <DropdownMenuItem>過去の釣果</DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />

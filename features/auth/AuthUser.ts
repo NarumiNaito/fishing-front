@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
 import { useState } from "react";
-import { persistor, useAppDispatch } from "@/redux/store/store";
-import { setLogin } from "@/redux/users/userSlice";
 
 const LoginSchema = z.object({
   email: z.string().email({ message: "メールアドレスの形式が正しくありません" }),
@@ -78,35 +76,4 @@ export function useAuthForm({ type }: AuthFormProps) {
   });
 
   return { form, onSubmit, isError, isSuccess };
-}
-
-export function useLogout() {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
-  const handleLogout = async () => {
-    try {
-      await axios.get("sanctum/csrf-cookie");
-      await axios.post("api/user/logout");
-      dispatch(setLogin(false));
-      await persistor.flush();
-      await persistor.purge();
-      sessionStorage.removeItem("persist:user");
-      router.push("/login");
-    } catch (error: any) {
-      if ((error as any).isAxiosError) {
-        if (error.response?.status === 401) {
-          console.warn("401エラー: 未認証のためリダイレクト");
-          dispatch(setLogin(false));
-          router.push("/login");
-        } else {
-          console.error("ログアウトに失敗しました", error);
-        }
-      } else {
-        console.error("ログアウト中に予期しないエラーが発生しました", error);
-      }
-    }
-  };
-
-  return { handleLogout };
 }

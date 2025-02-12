@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import AuthVideo from "@/features/auth/AuthVideo";
 import { useAuthForm } from "@/features/auth/AuthUser";
 import AuthCard from "@/features/auth/AuthCard";
-import { AuthToast } from "@/features/auth/AuthToast";
+import { UseToast } from "@/hooks/useToast";
 import { useState } from "react";
 import { TogglePasswordOfIcon, TogglePasswordOnIcon } from "@/components/ui/togglePasswordIcon";
 
@@ -48,7 +48,7 @@ export default function Login() {
         </Form>
         <AuthVideo />
       </AuthCard>
-      <AuthToast isError={isError} isSuccess={isSuccess} />
+      <UseToast isError={isError} isSuccess={isSuccess} />
     </>
   );
 }

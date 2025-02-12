@@ -1,4 +1,3 @@
-import { siteConfig } from "@/const/siteConfig";
 import { NavItem } from "@/types";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link";

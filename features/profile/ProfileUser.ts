@@ -1,17 +1,50 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
 import { useState } from "react";
-import { useAppSelector } from "@/redux/store/store";
+import { persistor, useAppDispatch, useAppSelector } from "@/redux/store/store";
+import { setLogin } from "@/redux/users/userSlice";
 import { getUserId, getUserName } from "@/redux/users/selectors";
 
-const editSchema = z.object({
+const EditSchema = z.object({
   name: z.string().min(2, { message: "ユーザーネームは2文字以上で入力してください" }),
 });
 
-export function ProfileForm() {
+export function useLogout() {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get("sanctum/csrf-cookie");
+      await axios.post("api/user/logout");
+      dispatch(setLogin(false));
+      await persistor.flush();
+      await persistor.purge();
+      sessionStorage.removeItem("persist:user");
+      router.push("/login");
+    } catch (error: any) {
+      if ((error as any).isAxiosError) {
+        if (error.response?.status === 401) {
+          console.warn("401エラー: 未認証のためリダイレクト");
+          dispatch(setLogin(false));
+          router.push("/login");
+        } else {
+          console.error("ログアウトに失敗しました", error);
+        }
+      } else {
+        console.error("ログアウト中に予期しないエラーが発生しました", error);
+      }
+    }
+  };
+
+  return { handleLogout };
+}
+
+export function useEdit() {
   const selector = useAppSelector((state) => state);
   const id = getUserId(selector);
   const userName = getUserName(selector);
@@ -20,7 +53,7 @@ export function ProfileForm() {
   const { refetchUser } = useUser();
   const form = useForm({
     defaultValues: { name: userName || "" },
-    resolver: zodResolver(editSchema),
+    resolver: zodResolver(EditSchema),
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
