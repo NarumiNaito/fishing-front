@@ -10,7 +10,7 @@ import { AuthToast } from "@/features/auth/AuthToast";
 import { useState } from "react";
 import { TogglePasswordOfIcon, TogglePasswordOnIcon } from "@/components/ui/togglePasswordIcon";
 
-export default function RegisterFormPage() {
+export default function Register() {
   const [password, setPassword] = useState(false);
 
   const { form, onSubmit, isError, isSuccess } = useAuthForm({ type: "register" });
