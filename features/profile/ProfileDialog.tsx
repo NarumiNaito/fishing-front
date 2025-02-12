@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FormInput } from "@/hooks/useForm";
 import { Form } from "@/components/ui/form";
-import { ProfileForm } from "./ProfileForm";
-import { AuthToast } from "../auth/AuthToast";
+import { useEdit } from "@/features/profile/ProfileUser";
+import { UseToast } from "@/hooks/useToast";
 
-export function ProfileEditDialog() {
-  const { form, onSubmit, isError, isSuccess } = ProfileForm();
+export function ProfileDialog() {
+  const { form, onSubmit, isError, isSuccess } = useEdit();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = async () => {
@@ -40,7 +40,7 @@ export function ProfileEditDialog() {
           </DialogFooter>
         </DialogContent>
       </Form>
-      <AuthToast isError={isError} isSuccess={isSuccess} />
+      <UseToast isError={isError} isSuccess={isSuccess} />
     </Dialog>
   );
 }

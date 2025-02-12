@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { useToast } from "@/hooks/useToast";
+import { useToaster } from "@/components/ui/useToaster";
 
 type AuthToastProps = {
   isError?: string | null;
   isSuccess?: string | null;
 };
 
-export function AuthToast({ isError, isSuccess }: AuthToastProps) {
-  const { toast } = useToast();
+export function UseToast({ isError, isSuccess }: AuthToastProps) {
+  const { toast } = useToaster();
 
   useEffect(() => {
     if (isError) {
