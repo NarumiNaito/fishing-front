@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 const Earth = () => {
   const texture = useLoader(TextureLoader as any, "/earth.jpg") as THREE.Texture;
-  const earthRef = useRef<any>();
+  const earthRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
     if (earthRef.current) {

@@ -25,6 +25,7 @@ export function useLogout() {
       await persistor.flush();
       await persistor.purge();
       sessionStorage.removeItem("persist:user");
+
       router.push("/login");
     } catch (error: any) {
       if ((error as any).isAxiosError) {
