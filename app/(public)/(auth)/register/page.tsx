@@ -13,7 +13,7 @@ import { TogglePasswordOfIcon, TogglePasswordOnIcon } from "@/components/ui/togg
 export default function Register() {
   const [password, setPassword] = useState(false);
 
-  const { form, onSubmit, isError, isSuccess } = useAuthForm({ type: "register" });
+  const { form, onSubmit, isError } = useAuthForm({ type: "register" });
   const togglePassword = () => {
     setPassword(!password);
   };
@@ -46,7 +46,7 @@ export default function Register() {
         </Form>
         <AuthVideo />
       </AuthCard>
-      <UseToast isError={isError} isSuccess={isSuccess} />
+      <UseToast />
     </>
   );
 }

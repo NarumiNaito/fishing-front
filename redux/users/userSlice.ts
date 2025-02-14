@@ -9,7 +9,6 @@ export const fetchUser = createAsyncThunk<UserType | null, string>("users/fetchU
     const response = await axios.get<UserType>(key);
     return { ...response.data, isLogin: true };
   } catch (error: any) {
-    console.error("ユーザー情報の取得に失敗:", error);
     return rejectWithValue(error.response?.data?.message || "ユーザー取得エラー");
   }
 });

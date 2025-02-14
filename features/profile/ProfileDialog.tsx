@@ -7,7 +7,7 @@ import { useEdit } from "@/features/profile/ProfileUser";
 import { UseToast } from "@/hooks/useToast";
 
 export function ProfileDialog() {
-  const { form, onSubmit, isError, isSuccess } = useEdit();
+  const { form, onSubmit } = useEdit();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = async () => {
@@ -40,7 +40,7 @@ export function ProfileDialog() {
           </DialogFooter>
         </DialogContent>
       </Form>
-      <UseToast isError={isError} isSuccess={isSuccess} />
+      <UseToast />
     </Dialog>
   );
 }
