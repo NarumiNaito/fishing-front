@@ -1,9 +1,8 @@
 "use client";
-
 import { footerContent } from "@/const/footerContent";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin, getUser } from "@/redux/users/selectors";
+import { getLogin } from "@/redux/users/selectors";
 
 export default function Footer() {
   const selector = useAppSelector((state) => state);

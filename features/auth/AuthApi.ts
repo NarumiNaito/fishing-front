@@ -35,13 +35,13 @@ const RegisterSchema = LoginSchema.extend({
 });
 
 type AuthFormProps = {
-  type: "login" | "register";
+  type: string;
 };
 
-export function useAuthForm({ type }: AuthFormProps) {
+export function useAuth({ type }: AuthFormProps) {
   const router = useRouter();
   const { refetchUser } = useUser();
-  const isLogin = type === "login";
+  const isLogin = type === "/login";
   const [isError, setIsError] = useState<string | null>(null);
 
   const form = useForm({

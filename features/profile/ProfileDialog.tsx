@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FormInput } from "@/hooks/useForm";
 import { Form } from "@/components/ui/form";
-import { useEdit } from "@/features/profile/ProfileUser";
+import { useEdit } from "@/features/profile/ProfileApi";
 import { UseToast } from "@/hooks/useToast";
 
 export function ProfileDialog() {

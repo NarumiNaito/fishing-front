@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import Home from "./(public)/page";
-import Earth from "@/components/ui/Earth";
+import Earth from "@/components/Earth";
+import MainVideo from "@/components/MainVideo";
+import ResultsContent from "@/features/results/ResultsContent";
 
 export default function FirstLoading() {
   const [loading, setLoading] = useState(true);
@@ -15,12 +16,13 @@ export default function FirstLoading() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black from-25% via-slate-700 via-50% to-black to-75%">
-        <Earth />
-      </div>
-    );
+    return <Earth />;
   }
 
-  return <Home />;
+  return (
+    <>
+      <MainVideo />
+      <ResultsContent />
+    </>
+  );
 }
