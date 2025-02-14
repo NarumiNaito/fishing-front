@@ -6,7 +6,7 @@ import { getLogin } from "@/redux/users/selectors";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-export default function IndexPage() {
+export default function MainVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const selector = useAppSelector((state) => state);

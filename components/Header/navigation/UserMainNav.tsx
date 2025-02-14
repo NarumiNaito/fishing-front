@@ -1,12 +1,12 @@
 import { NavItem } from "@/types";
 import { ReactNode } from "react";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin, getUserName } from "@/redux/users/selectors";
+import { getLogin } from "@/redux/users/selectors";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
 import { ProfileDialog } from "@/features/profile/ProfileDialog";
-import { useLogout } from "@/features/profile/ProfileUser";
+import { useLogout } from "@/features/profile/ProfileApi";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import UserAvatar from "@/components/UserAvatar";
 
 interface MainNavProps {
   items?: NavItem[];
@@ -16,7 +16,6 @@ interface MainNavProps {
 export default function UserMainNav({ items }: MainNavProps) {
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
-  const userName = getUserName(selector);
   const { handleLogout } = useLogout();
 
   return (
@@ -26,13 +25,7 @@ export default function UserMainNav({ items }: MainNavProps) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex items-center gap-2 cursor-pointer">
-                <Avatar>
-                  <AvatarImage src="" alt="" />
-                  <AvatarFallback>
-                    <AvatarNoneImage />
-                  </AvatarFallback>
-                </Avatar>
-                <span>{userName}</span>
+                <UserAvatar />
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">

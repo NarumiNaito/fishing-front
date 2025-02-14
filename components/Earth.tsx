@@ -50,14 +50,16 @@ const Particle = () => {
 
 const App = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 5] }} style={{ width: "100vw", height: "100vh" }}>
-      <Particle />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[2, 2, 2]} intensity={1} />
-      <Earth />
-      <EarthText />
-      <OrbitControls enableZoom={false} />
-    </Canvas>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-black from-25% via-slate-700 via-50% to-black to-75%">
+      <Canvas camera={{ position: [0, 0, 5] }} style={{ width: "100vw", height: "100vh" }}>
+        <Particle />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[2, 2, 2]} intensity={1} />
+        <Earth />
+        <EarthText />
+        <OrbitControls enableZoom={false} />
+      </Canvas>
+    </div>
   );
 };
 

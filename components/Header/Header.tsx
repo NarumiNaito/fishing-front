@@ -1,7 +1,7 @@
 "use client";
-import MainNav from "@/components/ui/Header/navigation/MainNav";
+import MainNav from "@/components/Header/navigation/MainNav";
 import { publicContent, privateContent, authContent, userContent } from "@/const/headerContent";
-import UserMainNav from "@/components/ui/Header/navigation/UserMainNav";
+import UserMainNav from "@/components/Header/navigation/UserMainNav";
 import { useAppSelector } from "@/redux/store/store";
 import { getLogin } from "@/redux/users/selectors";
 

@@ -15,7 +15,6 @@ export default function MainNav({ items }: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
-  const id = getUserId(selector);
   const path = isLogin ? "/dashboard" : "/";
 
   return (
