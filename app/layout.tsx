@@ -7,6 +7,7 @@ import StoreProvider from "@/redux/store/StoreProvider";
 import Footer from "@/components/ui/Footer/Footer";
 import Header from "@/components/ui/Header/Header";
 import { Toaster } from "@/components/ui/toaster";
+import { AxiosClientProvider } from "@/lib/api/Axios";
 
 const fontNotSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -22,12 +23,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ja">
       <body className={cn("bg-secondary", fontNotSansJP.className)}>
-        <StoreProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Toaster />
-        </StoreProvider>
+        <AxiosClientProvider>
+          <StoreProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Toaster />
+          </StoreProvider>
+        </AxiosClientProvider>
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const isPublicPage = ["/", "/:path*", "/login", "/register"].includes(nextUrl.pathname);
 
-  const isLogin = req.cookies.get("laravel_session");
+  const isLogin = req.cookies.get("user_session");
 
   if (isLogin && isPublicPage) {
     const redirectTo = req.nextUrl.searchParams.get("redirect") || "/dashboard";
@@ -20,5 +20,12 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|global-error.tsx|layout|loading|not-found|page|earth.jpg).*)", "/dashboard/:path*", "/profile/:path*", "/login", "/register", "/"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|global-error.tsx|layout|loading|not-found|page|earth.jpg|Auth.mov|mainVideo.mp4).*)",
+    "/dashboard/:path*",
+    "/profile/:path*",
+    "/login",
+    "/register",
+    "/",
+  ],
 };
