@@ -6,7 +6,7 @@ import { axios } from "@/lib/api/Axios";
 import { useUser } from "@/hooks/useUser";
 import { persist, useAppDispatch, useAppSelector } from "@/redux/store/store";
 import { setLogin } from "@/redux/users/userSlice";
-import { getUserId, getUserName } from "@/redux/users/selectors";
+import { getUserId, getUserImage, getUserName } from "@/redux/users/selectors";
 
 const EditSchema = z.object({
   name: z.string().min(2, { message: "ユーザーネームは2文字以上で入力してください" }),
@@ -38,16 +38,17 @@ export function useEdit() {
   const selector = useAppSelector((state) => state);
   const id = getUserId(selector);
   const userName = getUserName(selector);
+  const userImage = getUserImage(selector);
   const { refetchUser } = useUser();
   const form = useForm({
-    defaultValues: { name: userName || "" },
+    defaultValues: { name: userName || "", image: userImage || null },
     resolver: zodResolver(EditSchema),
   });
 
   const onSubmit = form.handleSubmit(async (data) => {
     try {
       await axios.get("sanctum/csrf-cookie");
-      await axios.post("api/user/update", { name: data.name, id: id });
+      await axios.post("api/user/update", { id: id, name: data.name, image: data.image });
 
       await refetchUser();
     } catch (error: any) {

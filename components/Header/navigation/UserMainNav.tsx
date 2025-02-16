@@ -1,9 +1,10 @@
 import { NavItem } from "@/types";
 import { ReactNode } from "react";
 import { useAppSelector } from "@/redux/store/store";
-import { getLogin } from "@/redux/users/selectors";
+import { getLogin, getUserName } from "@/redux/users/selectors";
 import Link from "next/link";
-import { ProfileDialog } from "@/features/profile/ProfileDialog";
+// import { ProfileDialog } from "@/features/profile/ProfileDialog";
+import { ProfileDialog } from "@/features/profile/ttt";
 import { useLogout } from "@/features/profile/ProfileApi";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import UserAvatar from "@/components/UserAvatar";
@@ -16,6 +17,7 @@ interface MainNavProps {
 export default function UserMainNav({ items }: MainNavProps) {
   const selector = useAppSelector((state) => state);
   const isLogin = getLogin(selector);
+  const name = getUserName(selector);
   const { handleLogout } = useLogout();
 
   return (
@@ -26,6 +28,7 @@ export default function UserMainNav({ items }: MainNavProps) {
             <DropdownMenuTrigger asChild>
               <div className="flex items-center gap-2 cursor-pointer">
                 <UserAvatar />
+                {name}
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">

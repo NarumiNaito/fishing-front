@@ -23,6 +23,7 @@ export type ContentConfig = {
 export interface UserType {
   id: string;
   name: string;
+  image: string;
   email: string;
   password: string;
   status: string;
