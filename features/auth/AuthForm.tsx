@@ -16,8 +16,6 @@ export default function AuthForm() {
     setPassword(!password);
   };
 
-  console.log(pathname);
-
   return (
     <>
       {pathname === "/login" ? (
