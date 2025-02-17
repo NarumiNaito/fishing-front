@@ -27,6 +27,11 @@ export function useLogout() {
 
       router.push("/login");
     } catch (error: any) {
+      dispatch(setLogin(false));
+      await persist.flush();
+      await persist.purge();
+      sessionStorage.removeItem("persist:user");
+
       throw error;
     }
   };
@@ -48,13 +53,23 @@ export function useEdit() {
   const onSubmit = form.handleSubmit(async (data) => {
     try {
       await axios.get("sanctum/csrf-cookie");
-      await axios.post("api/user/update", { id: id, name: data.name, image: data.image });
+
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", data.name);
+      formData.append("image", data.image);
+
+      await axios.post("api/user/update", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       await refetchUser();
-    } catch (error: any) {
-      throw error;
+    } catch (error) {
+      console.error(error);
     }
   });
 
-  return { form, onSubmit };
+  return { form, onSubmit, userImage };
 }

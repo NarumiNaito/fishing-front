@@ -2,13 +2,12 @@ import { useState, useRef, InputHTMLAttributes } from "react";
 
 type FileInputProps = InputHTMLAttributes<HTMLInputElement> & {
   ref: (e: HTMLInputElement | null) => void;
-  initialImageData?: string; // 初期画像データをオプションで受け取る
 };
 
 const useFileInput = (props: FileInputProps) => {
   const fileInput = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [imageData, setImageData] = useState(props.initialImageData || ""); // 初期画像データを設定
+  const [imageData, setImageData] = useState("");
   const { ref, type, accept, style, onChange, ...rest } = props;
 
   const deployment = (files: FileList) => {
@@ -35,7 +34,7 @@ const useFileInput = (props: FileInputProps) => {
 
   const resets = () => {
     setFile(null);
-    setImageData(props.initialImageData || "");
+    setImageData("");
     if (!fileInput.current) return;
     fileInput.current.value = "";
   };

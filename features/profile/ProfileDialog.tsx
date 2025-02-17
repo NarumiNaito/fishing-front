@@ -1,14 +1,31 @@
-import { useState } from "react";
+// ProfileDialog.js
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FormInput } from "@/hooks/useForm";
 import { Form } from "@/components/ui/form";
 import { useEdit } from "@/features/profile/ProfileApi";
 import { UseToast } from "@/hooks/useToast";
+import useFileInput from "@/hooks/useFileInput";
+import { Controller } from "react-hook-form";
+import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
 
 export function ProfileDialog() {
-  const { form, onSubmit } = useEdit();
+  const { form, onSubmit, userImage } = useEdit();
   const [isOpen, setIsOpen] = useState(false);
+
+  const { register, control, setValue } = form;
+
+  const inputProps = register("image");
+
+  const { file, imageData, resets, selectFile, contextHolder } = useFileInput(inputProps);
+
+  // file が変更されたらフォームの image フィールドに設定
+  useEffect(() => {
+    if (file) {
+      setValue("image", file);
+    }
+  }, [file, setValue]);
 
   const handleSubmit = async () => {
     await onSubmit();
@@ -32,7 +49,31 @@ export function ProfileDialog() {
               完了したら保存をクリックしてください。
             </DialogDescription>
           </DialogHeader>
-          <FormInput control={form.control} name="name" label="ユーザ名" placeholder="ユーザ名を入力してください" />
+
+          <Controller
+            control={control}
+            name="image"
+            render={({ field }) => (
+              <>
+                {contextHolder}
+                <div>
+                  <button onClick={selectFile}>
+                    <Avatar>
+                      <AvatarImage src={imageData} alt="image" />
+                      <AvatarFallback>
+                        <AvatarNoneImage />
+                      </AvatarFallback>
+                    </Avatar>
+                  </button>
+                  <div>
+                    <button onClick={resets}>削除</button>
+                  </div>
+                </div>
+              </>
+            )}
+          />
+
+          <FormInput control={control} name="name" label="ユーザ名" placeholder="ユーザ名を入力してください" />
           <DialogFooter>
             <Button type="submit" onClick={handleSubmit}>
               保存
