@@ -1,36 +1,72 @@
-// ProfileDialog.js
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FormInput } from "@/hooks/useForm";
 import { Form } from "@/components/ui/form";
-import { useEdit } from "@/features/profile/ProfileApi";
-import { UseToast } from "@/hooks/useToast";
+import { useAppSelector } from "@/redux/store/store";
+import { getUserId, getUserImage, getUserName } from "@/redux/users/selectors";
+import { useUser } from "@/hooks/useUser";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, Controller } from "react-hook-form";
+import { z } from "zod";
 import useFileInput from "@/hooks/useFileInput";
-import { Controller } from "react-hook-form";
 import { Avatar, AvatarFallback, AvatarImage, AvatarNoneImage } from "@/components/ui/avatar";
+import { axios } from "@/lib/api/Axios";
+import { UseToast } from "@/hooks/useToast";
+
+const EditSchema = z.object({
+  name: z.string().min(2, { message: "ユーザーネームは2文字以上で入力してください" }),
+  image: z.any().optional(),
+});
+
+interface FormData {
+  name: string;
+  image: File | null;
+}
 
 export function ProfileDialog() {
-  const { form, onSubmit, userImage } = useEdit();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { register, control, setValue } = form;
+  const selector = useAppSelector((state) => state);
+  const id = getUserId(selector);
+  const userName = getUserName(selector);
+  const image = getUserImage(selector);
+  const { refetchUser } = useUser();
+
+  const form = useForm<FormData>({
+    defaultValues: { name: userName || "", image: image || null },
+    resolver: zodResolver(EditSchema),
+  });
+
+  const { register, control } = form;
 
   const inputProps = register("image");
 
   const { file, imageData, resets, selectFile, contextHolder } = useFileInput(inputProps);
 
-  // file が変更されたらフォームの image フィールドに設定
-  useEffect(() => {
-    if (file) {
-      setValue("image", file);
-    }
-  }, [file, setValue]);
-
-  const handleSubmit = async () => {
-    await onSubmit();
+  const onSubmit = form.handleSubmit(async (data) => {
     setIsOpen(false);
-  };
+    try {
+      await axios.get("sanctum/csrf-cookie");
+
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", data.name);
+      formData.append("image", file);
+
+      console.log(formData);
+
+      await axios.post("api/user/update", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      await refetchUser();
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -57,7 +93,7 @@ export function ProfileDialog() {
               <>
                 {contextHolder}
                 <div>
-                  <button onClick={selectFile}>
+                  <button type="button" onClick={selectFile}>
                     <Avatar>
                       <AvatarImage src={imageData} alt="image" />
                       <AvatarFallback>
@@ -65,17 +101,23 @@ export function ProfileDialog() {
                       </AvatarFallback>
                     </Avatar>
                   </button>
-                  <div>
-                    <button onClick={resets}>削除</button>
-                  </div>
+                  {file && (
+                    <div>
+                      <button type="button" onClick={resets}>
+                        削除
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             )}
           />
 
+          <img src={image} alt="userIcon" />
+
           <FormInput control={control} name="name" label="ユーザ名" placeholder="ユーザ名を入力してください" />
           <DialogFooter>
-            <Button type="submit" onClick={handleSubmit}>
+            <Button type="submit" onClick={() => onSubmit()}>
               保存
             </Button>
           </DialogFooter>

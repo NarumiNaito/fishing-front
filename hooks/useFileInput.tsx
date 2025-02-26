@@ -6,7 +6,7 @@ type FileInputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const useFileInput = (props: FileInputProps) => {
   const fileInput = useRef<HTMLInputElement | null>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<any>(null);
   const [imageData, setImageData] = useState("");
   const { ref, type, accept, style, onChange, ...rest } = props;
 

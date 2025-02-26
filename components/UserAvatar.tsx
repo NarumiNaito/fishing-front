@@ -6,6 +6,7 @@ import { getUserImage } from "@/redux/users/selectors";
 export default function UserAvatar() {
   const selector = useAppSelector((state) => state);
   const image = getUserImage(selector);
+
   return (
     <Avatar>
       <AvatarImage src={image} alt="image" />

@@ -8,9 +8,9 @@ import { persist, useAppDispatch, useAppSelector } from "@/redux/store/store";
 import { setLogin } from "@/redux/users/userSlice";
 import { getUserId, getUserImage, getUserName } from "@/redux/users/selectors";
 
-const EditSchema = z.object({
-  name: z.string().min(2, { message: "ユーザーネームは2文字以上で入力してください" }),
-});
+// const EditSchema = z.object({
+//   name: z.string().min(2, { message: "ユーザーネームは2文字以上で入力してください" }),
+// });
 
 export function useLogout() {
   const dispatch = useAppDispatch();
@@ -39,37 +39,37 @@ export function useLogout() {
   return { handleLogout };
 }
 
-export function useEdit() {
-  const selector = useAppSelector((state) => state);
-  const id = getUserId(selector);
-  const userName = getUserName(selector);
-  const userImage = getUserImage(selector);
-  const { refetchUser } = useUser();
-  const form = useForm({
-    defaultValues: { name: userName || "", image: userImage || null },
-    resolver: zodResolver(EditSchema),
-  });
+// export function useEdit() {
+//   const selector = useAppSelector((state) => state);
+//   const id = getUserId(selector);
+//   const userName = getUserName(selector);
+//   const userImage = getUserImage(selector);
+//   const { refetchUser } = useUser();
+//   const form = useForm({
+//     defaultValues: { name: userName || "", image: userImage || null },
+//     resolver: zodResolver(EditSchema),
+//   });
 
-  const onSubmit = form.handleSubmit(async (data) => {
-    try {
-      await axios.get("sanctum/csrf-cookie");
+//   const onSubmit = form.handleSubmit(async (data) => {
+//     try {
+//       await axios.get("sanctum/csrf-cookie");
 
-      const formData = new FormData();
-      formData.append("id", id);
-      formData.append("name", data.name);
-      formData.append("image", data.image);
+//       const formData = new FormData();
+//       formData.append("id", id);
+//       formData.append("name", data.name);
+//       formData.append("image", data.image);
 
-      await axios.post("api/user/update", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+//       await axios.post("api/user/update", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
 
-      await refetchUser();
-    } catch (error) {
-      console.error(error);
-    }
-  });
+//       await refetchUser();
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   });
 
-  return { form, onSubmit, userImage };
-}
+//   return { form, onSubmit, userImage };
+// }

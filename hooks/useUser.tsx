@@ -9,9 +9,9 @@ export const useUser = () => {
 
   useEffect(() => {
     if (!user) {
-      dispatch(fetchUser("/api/user"));
+      dispatch(fetchUser("api/user"));
     }
   }, [dispatch, user]);
 
-  return { user, refetchUser: () => dispatch(fetchUser("/api/user")), clearUser: () => dispatch(clearUser()) };
+  return { user, refetchUser: () => dispatch(fetchUser("api/user")), clearUser: () => dispatch(clearUser()) };
 };
